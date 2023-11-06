@@ -24,7 +24,7 @@ namespace BadgeWatch.Controllers
         public ActionResult<IEnumerable<OfficerDto>> GetOfficers()
         {
             //Task: Get All Officers from DB
-            return Ok(_dbcontext.Officers.ToList());
+            return Ok(_dbcontext.OfficersView.ToList());
         }
         [HttpGet("id")]
         [ProducesResponseType(StatusCodes.Status200OK)]

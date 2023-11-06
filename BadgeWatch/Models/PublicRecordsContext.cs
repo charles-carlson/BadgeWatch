@@ -11,6 +11,7 @@ namespace BadgeWatch.Models
     {
         public DbSet<Officer> Officers { get; set; }
         public DbSet<Record> Records { get; set; }
+        public DbSet<OfficersView> OfficersView { get; set; }
 
         //public string DbPath { get; }
         public PublicRecordsContext()
