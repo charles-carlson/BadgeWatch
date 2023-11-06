@@ -11,6 +11,7 @@ namespace BadgeWatch.Models.Views
         public string? IaNumber { get; set; }
         public int OfficerId { get; set; }
         public string DisciplinaryHistory { get; set; }
+        public string AllegationDisposition { get; set; }
         public string? Discipline { get; set; }
         public DateTime DisciplinaryDate { get; set; }
     }

@@ -39,6 +39,7 @@ namespace BadgeWatch.Controllers
             }
             return Ok(record);
         }
+        [HttpGet("OfficerId")]
         public ActionResult<RecordsView> GetRecordByOfficerId(int id)
         {
             if (id == 0)
