@@ -19,6 +19,16 @@ namespace BadgeWatch
         static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+            var allowedOrigin = builder.Configuration.GetSection("AllowedOrigins").Get<string[]>();
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("frontend", policy =>
+                {
+                    policy.WithOrigins(allowedOrigin)
+                        .AllowAnyHeader()
+                        .AllowAnyMethod();
+                });
+            });
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
@@ -30,6 +40,7 @@ namespace BadgeWatch
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
+            app.UseCors("frontend");
             app.UseHttpsRedirection();
             app.UseAuthorization();
             app.MapControllers();
