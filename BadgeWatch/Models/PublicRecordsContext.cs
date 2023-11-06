@@ -2,16 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BadgeWatch.Models.Views;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
-namespace BadgeWatch.Models 
+namespace BadgeWatch.Models
 {
     public class PublicRecordsContext : DbContext
     {
         public DbSet<Officer> Officers { get; set; }
         public DbSet<Record> Records { get; set; }
         public DbSet<OfficersView> OfficersView { get; set; }
+        public DbSet<RecordsView> RecordsView { get; set; }
 
         //public string DbPath { get; }
         public PublicRecordsContext()

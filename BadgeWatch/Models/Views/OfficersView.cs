@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Numerics;
 
-namespace BadgeWatch.Models
+namespace BadgeWatch.Models.Views
 {
     [Table("AllOfficers")]
     public class OfficersView
@@ -12,13 +12,13 @@ namespace BadgeWatch.Models
         public int Id { get; set; }
         [Required]
         public string Name { get; set; }
-        public string? Rank { get; set; }
+        public string Rank { get; set; }
         [Required]
         public int BadgeNumber { get; set; }
         public string Division { get; set; }
         [Required]
         public string City { get; set; }
-        public string? Precinct { get; set; }
+        public string Precinct { get; set; }
         public int? Arrests { get; set; }
         public int IsActive { get; set; }
         [Required]

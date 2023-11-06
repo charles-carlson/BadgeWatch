@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using BadgeWatch.Data;
 using BadgeWatch.Models;
 using BadgeWatch.Models.Dto;
+using BadgeWatch.Models.Views;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -33,6 +34,19 @@ namespace BadgeWatch.Controllers
             }
             var record = _dbcontext.Records.SingleOrDefault(u=>u.Id == id);
             if (record is null)
+            {
+                return NotFound();
+            }
+            return Ok(record);
+        }
+        public ActionResult<RecordsView> GetRecordByOfficerId(int id)
+        {
+            if (id == 0)
+            {
+                return BadRequest();
+            }
+            var record = _dbcontext.RecordsView.Where(r => r.OfficerId == id).ToList();
+            if(record is null)
             {
                 return NotFound();
             }
