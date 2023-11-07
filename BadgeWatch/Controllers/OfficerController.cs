@@ -7,6 +7,7 @@ using BadgeWatch.Models;
 using BadgeWatch.Models.Dto;
 using Microsoft.AspNetCore.Http;
 using BadgeWatch.Data;
+using BadgeWatch.Models.Views;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -25,6 +26,23 @@ namespace BadgeWatch.Controllers
         {
             //Task: Get All Officers from DB
             return Ok(_dbcontext.OfficersView.ToList());
+        }
+        [HttpGet("OfficerId")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public ActionResult<IEnumerable<OfficersView>> GetOfficerByOfficerId(int officerId)
+        {
+            if (officerId == 0)
+            {
+                return BadRequest();
+            }
+            var officer = _dbcontext.OfficersView.SingleOrDefault(u => u.Id == officerId);
+            if (officer == null)
+            {
+                return NotFound();
+            }
+            return Ok(officer);
         }
         [HttpGet("id")]
         [ProducesResponseType(StatusCodes.Status200OK)]
